@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 import myplotstyle as ms
 
-from Eduard3.gaussfit import GaussFit
-from Eduard3.h5_storage import loadH5Recursive
+from gaussfit import GaussFit
+from h5_storage import loadH5Recursive
 
 #dict_ = loadH5Recursive('/sf/data/measurements/2019/05/18/20190518_132817_SARCL02-DSCR280_camera_snapshot.h5')
 dict_ = loadH5Recursive('/afs/psi.ch/intranet/SF/data/2019/07/15/Bunch_length_meas_2019-07-15_04-00-36.h5')
