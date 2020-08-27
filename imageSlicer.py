@@ -3,13 +3,13 @@ import matplotlib.pyplot as plt
 
 import myplotstyle as ms
 
-from gaussfit import GaussFit
-from h5_storage import loadH5Recursive
+from .gaussfit import GaussFit
+#from h5_storage import loadH5Recursive
 
 #dict_ = loadH5Recursive('/sf/data/measurements/2019/05/18/20190518_132817_SARCL02-DSCR280_camera_snapshot.h5')
-dict_ = loadH5Recursive('/afs/psi.ch/intranet/SF/data/2019/07/15/Bunch_length_meas_2019-07-15_04-00-36.h5')
+#dict_ = loadH5Recursive('/afs/psi.ch/intranet/SF/data/2019/07/15/Bunch_length_meas_2019-07-15_04-00-36.h5')
 
-plt.close('all')
+#plt.close('all')
 
 def image_analysis(image, x_axis, y_axis, n_sig, n_slices, title):
 
@@ -24,6 +24,7 @@ def image_analysis(image, x_axis, y_axis, n_sig, n_slices, title):
     projY = np.sum(image, axis=1)
     projX = np.sum(image, axis=0)
 
+    import pdb; pdb.set_trace()
     gfY = GaussFit(y_axis, projY, sigma_00=None)
     gfX = GaussFit(x_axis, projX, sigma_00=None)
 
@@ -95,22 +96,22 @@ def image_analysis(image, x_axis, y_axis, n_sig, n_slices, title):
     return outp
 
 
-images = dict_['Raw_data']['Beam images']
-n_images = images.shape[0]
-
-for n_image in range(n_images):
-    transpose = True
-    image = dict_['Raw_data']['Beam images'][n_image]
-    x_axis = dict_['Raw_data']['xAxis']
-    y_axis = dict_['Raw_data']['yAxis']
-    n_slices = 15
-    n_sig = 2
-
-
-    if transpose:
-        image, y_axis, x_axis = image.T, x_axis, y_axis
-
-    output = image_analysis(image, x_axis, y_axis, n_sig, n_slices, title=n_image)
-
-plt.show()
+#images = dict_['Raw_data']['Beam images']
+#n_images = images.shape[0]
+#
+#for n_image in range(n_images):
+#    transpose = True
+#    image = dict_['Raw_data']['Beam images'][n_image]
+#    x_axis = dict_['Raw_data']['xAxis']
+#    y_axis = dict_['Raw_data']['yAxis']
+#    n_slices = 15
+#    n_sig = 2
+#
+#
+#    if transpose:
+#        image, y_axis, x_axis = image.T, x_axis, y_axis
+#
+#    output = image_analysis(image, x_axis, y_axis, n_sig, n_slices, title=n_image)
+#
+#plt.show()
 
